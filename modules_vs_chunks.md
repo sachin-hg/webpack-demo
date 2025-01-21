@@ -3,8 +3,8 @@
 
 Webpack bundles modules into chunks. At runtime, it uses specific mechanisms to load modules and chunks efficiently, ensuring caching and avoiding redundant loads.
 
-**1. Module**: A single file or dependency. Each file (JavaScript, CSS, etc.) is treated as a module.
-**2. Chunk**: A collection of modules that are bundled together by Webpack. Chunks are created based on entry points or dynamic import
+#### 1. **Module**: A single file or dependency. Each file (JavaScript, CSS, etc.) is treated as a module.
+#### 2.**Chunk**: A collection of modules that are bundled together by Webpack. Chunks are created based on entry points or dynamic import
 
 **Detailed Explanation:**
 ``Static imports`` (e.g., import something from './module.js') are bundled into the same chunk as the importing file.
