@@ -79,28 +79,16 @@ This function dynamically loads chunks at runtime using `<script>` tags and trac
 
 **Example Chunk Loading Workflow:**
 ```js
-var installedChunks = { 'main': 0 }; // 0 means the chunk is loaded
-
-__webpack_require__.e = function(chunkId) {
-  if (installedChunks[chunkId] === 0) {
-    return Promise.resolve();
-  }
-
-  if (installedChunks[chunkId]) {
-    return installedChunks[chunkId];
-  }
-
-  var promise = new Promise((resolve, reject) => {
-    installedChunks[chunkId] = [resolve, reject];
-  });
-
-  installedChunks[chunkId] = promise;
-
-  var script = document.createElement('script');
-  script.src = __webpack_require__.p + chunkId + '.js';
-  document.head.appendChild(script);
-
-  return promise;
+// loops over all the loading mechanisms possible for a given chunkId
+// loading mechanisms can be different for browser/node or other envs.
+// this function doesn't know how the loading mechanism for current env works
+// it just hopes that one of the loading mechanism will successfully load the chunk and resolve with a promise when done
+__webpack_require__.e = function (chunkId) {
+  return Promise.all(
+    Object.keys(__webpack_require__.f)
+      .reduce(( (allPromises, r) => (__webpack_require__.f[r](chunkId, allPromises),
+    allPromises)), [])
+  )
 };
 ```
 
