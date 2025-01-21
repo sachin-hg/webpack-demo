@@ -22,8 +22,8 @@ import('./dynamicModule.js').then(module => {
 ```
 
 **Resulting Chunks:**
-# Main Chunk: Contains index.js and staticModule.js.
-# Dynamic Chunk: Contains dynamicModule.js.
+#### 1. **Main Chunk** Contains index.js and staticModule.js.
+#### 2. **Dynamic Chunk** Contains dynamicModule.js.
 
 
 #### 1. **Static Imports**
